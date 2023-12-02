@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "vuechatapi"
+version = "0.1.0"
+description = ""
+authors = ["Roland Sobczak <rolandsobczak@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
