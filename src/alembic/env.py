@@ -7,6 +7,7 @@ from environs import Env
 
 from backend.db import Base
 from backend.settings import Settings
+from backend import models
 
 env = Env()
 

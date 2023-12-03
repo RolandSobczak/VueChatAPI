@@ -5,6 +5,8 @@ env: Env = Env()
 
 
 class Settings(BaseSettings):
+    SECRET_KEY: str = env("SECRET_KEY")
+
     POSTGRES_CONFIG: dict = {
         "USER": env("POSTGRES_USER"),
         "PASSWORD": env("POSTGRES_PASSWORD"),

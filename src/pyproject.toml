@@ -3,7 +3,6 @@ name = "vuechatapi"
 version = "0.1.0"
 description = ""
 authors = ["Roland Sobczak <rolandsobczak@icloud.com>"]
-readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "3.11.6"
@@ -14,6 +13,8 @@ alembic = "^1.13.0"
 environs = "^9.5.0"
 pydantic-settings = "^2.1.0"
 psycopg2-binary = "^2.9.9"
+fastapi-users = {extras = ["sqlalchemy"], version = "^12.1.2"}
+asyncpg = "^0.29.0"
 
 
 [build-system]
