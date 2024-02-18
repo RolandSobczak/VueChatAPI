@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2024-02-18T10:35:52Z"
+  name: chat-cd
+  namespace: default
+  resourceVersion: "1339597"
+  uid: 72a618b0-66a0-4f32-abf3-6d0bbb7cff1c

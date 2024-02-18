@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: chat-backend
+  name: chat-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-backend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: chat-backend
+    spec:
+      containers:
+        - image: localhost:32000/vuechatapi_backend:v1
+          name: vuechatapi-backend-7l79b
+          ports:
+            - containerPort: 8000
+          resources: {}
+          env:
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: secret_key
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: chat-config
+                  key: POSTGRES_HOST
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: chat-config
+                  key: POSTGRES_DB
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: chat-config
+                  key: POSTGRES_PORT
+
+status: {}
