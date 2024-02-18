@@ -1,6 +1,15 @@
 name: K8S pipeline
 run-name: "K8S pipeline"
-on: [push]
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types:
+      - closed
+    branches:
+      - develop
+
 jobs:
   docker-image-build:
     runs-on: ubuntu-latest
