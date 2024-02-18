@@ -22,5 +22,15 @@ jobs:
         with:
           push: true
           tags: rolandsobczak/chat-api:${{ github.sha }}
-  #update-deployment
-  #runs-on: ubuntu-latest
+  k8s-image-update:
+    runs-on: ubuntu-latest
+    needs: docker-image-build
+    steps:
+      - name: set up k8s
+        users: actions-hub/kubectl@master
+        env:
+          KUBE_HOST: ${{ secrets.KUBE_HOST }}
+          KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        with:
+          args: set image deployments/chat-backend rolandsobczak/chat-api=rolandsobczak/chat-api:${{ github.sha }}
