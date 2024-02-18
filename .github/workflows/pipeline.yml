@@ -27,7 +27,7 @@ jobs:
     needs: docker-image-build
     steps:
       - name: set up k8s
-        users: actions-hub/kubectl@master
+        uses: actions-hub/kubectl@master
         env:
           KUBE_HOST: ${{ secrets.KUBE_HOST }}
           KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
