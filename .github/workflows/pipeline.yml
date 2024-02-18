@@ -5,6 +5,9 @@ jobs:
   docker-image-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -33,4 +36,4 @@ jobs:
           KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
           KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         with:
-          args: set image deployments/chat-backend rolandsobczak/chat-api=rolandsobczak/chat-api:${{ github.sha }}
+          args: set image deployments/chat-backend vuechatapi=rolandsobczak/chat-api:${{ github.sha }}
