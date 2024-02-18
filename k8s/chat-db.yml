@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: chat-db
+  name: chat-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chat-db
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: chat-db
+    spec:
+      volumes:
+        - name: chat-pv-storage
+          persistentVolumeClaim:
+            claimName: chat-pvc
+      containers:
+        - image: postgres:16.1
+          name: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
+            - name: POSTGRES_DB
+              value: postgres
+          resources: {}
+          volumeMounts:
+            - mountPath: "/var/lib/postgresql/data"
+              name: chat-pv-storage
+status: {}
